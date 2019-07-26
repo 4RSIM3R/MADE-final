@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="search_view_inset">16dp</dimen>
+    <dimen name="main_padding">16dp</dimen>
+    <dimen name="second_padding">8dp</dimen>
+    <dimen name="third_margin">4dp</dimen>
+    <dimen name="third_padding">4dp</dimen>
+    <dimen name="height_img">250dp</dimen>
+</resources>
