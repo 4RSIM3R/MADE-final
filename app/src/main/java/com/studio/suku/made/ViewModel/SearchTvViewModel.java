@@ -3,7 +3,10 @@ package com.studio.suku.made.ViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.util.Log;
 
+import com.studio.suku.made.Model.SearchFilm;
+import com.studio.suku.made.Model.SearchFilmResults;
 import com.studio.suku.made.Model.SearchTv;
 import com.studio.suku.made.Model.SearchTvResults;
 
@@ -20,12 +23,12 @@ public class SearchTvViewModel extends ViewModel {
     private static final String BASE_URL = "https://api.themoviedb.org";
     private static final String API_KEY = "24f2356bed948a69b6ce4946afbf4f67";
     public static String SEARCH = "BBC";
-    private MutableLiveData<Response<SearchTvResults>> liveData;
+    private MutableLiveData<SearchTvResults> liveData;
 
 
-    public LiveData<Response<SearchTvResults>> getSearchTV(){
+    public LiveData<SearchTvResults> getSearchTV(){
         if (liveData == null){
-            liveData = new MutableLiveData<Response<SearchTvResults>>();
+            liveData = new MutableLiveData<SearchTvResults>();
             setLiveData();
         }
         return liveData;
@@ -47,12 +50,12 @@ public class SearchTvViewModel extends ViewModel {
         call.enqueue(new Callback<SearchTvResults>() {
             @Override
             public void onResponse(Call<SearchTvResults> call, Response<SearchTvResults> response) {
-                liveData.setValue(response);
+                liveData.setValue(response.body());
             }
 
             @Override
             public void onFailure(Call<SearchTvResults> call, Throwable t) {
-                t.printStackTrace();
+
             }
         });
     }
