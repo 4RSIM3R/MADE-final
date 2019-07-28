@@ -14,14 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchTvActivity"></activity>
+        <activity android:name=".FavoriteActivity"></activity>
+        <activity android:name=".SearchTvActivity" />
         <activity android:name=".DetailTvActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".SearchFilmActivity" />
-        <activity android:name=".SearchActicity" />
-        <activity android:name=".SettingsActivity" />
         <activity android:name=".DetailFilmActivity" />
-        <activity android:name=".View.DetailFilmActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,10 +30,6 @@
 
         <receiver
             android:name=".Service.Notification"
-            android:enabled="true"
-            android:exported="true" />
-        <receiver
-            android:name=".Service.ReminderServices"
             android:enabled="true"
             android:exported="true" />
     </application>

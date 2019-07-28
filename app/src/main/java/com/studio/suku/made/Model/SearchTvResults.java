@@ -70,7 +70,7 @@ public class SearchTvResults {
         private int id;
         private String name;
         private int vote_count;
-        private int vote_average;
+        private double vote_average;
         private Object poster_path;
         private String first_air_date;
         private double popularity;
@@ -112,11 +112,11 @@ public class SearchTvResults {
             this.vote_count = vote_count;
         }
 
-        public int getVote_average() {
+        public double getVote_average() {
             return vote_average;
         }
 
-        public void setVote_average(int vote_average) {
+        public void setVote_average(double vote_average) {
             this.vote_average = vote_average;
         }
 

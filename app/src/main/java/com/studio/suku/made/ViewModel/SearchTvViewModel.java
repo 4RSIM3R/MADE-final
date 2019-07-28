@@ -55,13 +55,13 @@ public class SearchTvViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<SearchTvResults> call, Throwable t) {
-
+                Log.d("Ada Error : ", t.getMessage());
             }
         });
     }
 
-//    public static void setSEARCH(String params){
-//        SEARCH = params;
-//    }
+    public static void setSEARCH(String params){
+        SEARCH = params;
+    }
 
 }

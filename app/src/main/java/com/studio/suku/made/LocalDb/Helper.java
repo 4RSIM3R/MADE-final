@@ -15,7 +15,7 @@ public class Helper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_NEW_TABLE = "CREATE TABLE favorite (_id INTEGER PRIMARY KEY, name TEXT, image TEXT, type TEXT)";
+        String CREATE_NEW_TABLE = "CREATE TABLE favorite (_id INTEGER PRIMARY KEY, name TEXT, image TEXT, type TEXT, overview TEXT, rate DOUBLE)";
         db.execSQL(CREATE_NEW_TABLE);
 
     }

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.studio.suku.made.Model.SearchTvResults;
 import com.studio.suku.made.R;
 
@@ -33,7 +34,10 @@ public class SearchTvAdapter extends RecyclerView.Adapter<SearchTvAdapter.TvHold
 
     @Override
     public void onBindViewHolder(@NonNull SearchTvAdapter.TvHolder tvHolder, int i) {
-        tvHolder.rate.setText(resultsBeans.get(i).getName());
+        tvHolder.title.setText(resultsBeans.get(i).getName());
+        tvHolder.rate.setText("Rate : " + resultsBeans.get(i).getVote_average());
+        String path_img = "https://image.tmdb.org/t/p/w500/"+ resultsBeans.get(i).getPoster_path();
+        Picasso.get().load(path_img).into(tvHolder.imageView);
     }
 
     @Override
