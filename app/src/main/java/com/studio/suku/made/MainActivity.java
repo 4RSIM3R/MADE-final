@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.quinny898.library.persistentsearch.SearchBox;
-import com.quinny898.library.persistentsearch.SearchResult;
 import com.studio.suku.made.Adapter.ViewPagerAdapter;
 import com.studio.suku.made.View.FilmFragment;
 import com.studio.suku.made.View.TvFragment;

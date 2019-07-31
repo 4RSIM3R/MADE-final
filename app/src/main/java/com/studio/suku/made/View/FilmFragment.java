@@ -34,7 +34,6 @@ import java.util.List;
 public class FilmFragment extends Fragment {
 
     private RecyclerView list_film;
-    private View view;
     private FilmAdapter filmAdapter;
     private ProgressBar progressBar;
     SearchBox searchBox;
@@ -78,7 +77,7 @@ public class FilmFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_film, container, false);
+        View view = inflater.inflate(R.layout.fragment_film, container, false);
         return view;
     }
 

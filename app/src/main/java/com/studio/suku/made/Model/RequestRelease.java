@@ -6,7 +6,7 @@ import retrofit2.http.Query;
 
 public interface RequestRelease {
 
-    @GET("movie/upcoming")
+    @GET("3/movie/upcoming")
     Call<ReleaseResults> getUpcomingFilm(
          @Query("api_key") String apiKey
     );

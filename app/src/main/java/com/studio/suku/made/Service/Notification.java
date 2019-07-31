@@ -53,8 +53,8 @@ public class Notification extends BroadcastReceiver {
 
         Calendar calendar = Calendar.getInstance();
 
-        calendar.set(Calendar.HOUR_OF_DAY, 7);
-        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.MINUTE, 47);
         calendar.set(Calendar.SECOND, 0);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, ID_NOTIF_7, intent, 0);
