@@ -87,14 +87,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(pindah);
         }
         else if (item.getItemId() == R.id.fav_film){
-//            Intent pindah = new Intent(MainActivity.this, FavoriteActivity.class);
-//            pindah.putExtra(FavoriteActivity.Type, "Film");
-//            startActivity(pindah);
+            Intent pindah = new Intent(MainActivity.this, FavoriteActivity.class);
+            pindah.putExtra(FavoriteActivity.Type, "Film");
+            startActivity(pindah);
         }
         else if (item.getItemId() == R.id.fav_tv){
-//            Intent pindah = new Intent(MainActivity.this, FavoriteActivity.class);
-//            pindah.putExtra(FavoriteActivity.Type, "Tv");
-//            startActivity(pindah);
+            Intent pindah = new Intent(MainActivity.this, FavoriteActivity.class);
+            pindah.putExtra(FavoriteActivity.Type, "Tv");
+            startActivity(pindah);
         }
 
         return super.onOptionsItemSelected(item);

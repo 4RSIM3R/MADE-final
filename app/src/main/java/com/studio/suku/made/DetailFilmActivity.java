@@ -20,6 +20,7 @@ import com.studio.suku.made.Model.MoviesResults;
 
 import java.util.ArrayList;
 
+
 public class DetailFilmActivity extends AppCompatActivity implements View.OnClickListener{
 
     public static final String EXTRA_DATA = "Extra Data";
@@ -72,8 +73,25 @@ public class DetailFilmActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         if (v.getId() == R.id.button){
             //Toast.makeText(DetailFilmActivity.this, favorite.getName(), Toast.LENGTH_SHORT).show();
-            long result = favoriteHelper.insertFavorite(favorite);
-
+            favoriteHelper.open();
+            try {
+               if ( favoriteHelper.checkData(favorite.getName()).moveToFirst()){
+                   Toast.makeText(DetailFilmActivity.this, "Sudah Ditambahkan", Toast.LENGTH_SHORT).show();
+               }
+               else {
+                   long result = favoriteHelper.insertFavorite(favorite);
+                   if (result > 0){
+                       Toast.makeText(DetailFilmActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
+                   }
+                   else {
+                       Toast.makeText(DetailFilmActivity.this, "Ada Error", Toast.LENGTH_SHORT).show();
+                   }
+               }
+            }catch (Exception e){
+                e.printStackTrace();
+                Log.d("Ada Error", e.getMessage());
+                Toast.makeText(this, "Ada Error", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

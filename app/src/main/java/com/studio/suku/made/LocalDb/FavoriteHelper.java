@@ -78,12 +78,17 @@ public class FavoriteHelper {
         cv.put(Entry.COLUMN_IMAGE, favorite.getImage());
         cv.put(Entry.COLUMN_RATE, favorite.getRate());
         cv.put(Entry.COLUMN_TYPE, favorite.getType());
+        cv.put(Entry.COLUMN_OVERVIEW, favorite.getOverview());
 
         return database.insert(Entry.TABLE_NAME, null, cv);
     }
 
     public int deleteFavorite(int id){
         return database.delete(Entry.TABLE_NAME, _ID + " = '" + id + "'", null);
+    }
+
+    public Cursor checkData(String name){
+        return database.rawQuery("SELECT * FROM favorite WHERE name = ? ", new String[]{name});
     }
 
 
