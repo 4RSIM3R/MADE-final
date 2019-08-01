@@ -14,8 +14,11 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.studio.suku.made.LocalDb.Contract;
-import com.studio.suku.made.LocalDb.Helper;
+import com.studio.suku.made.LocalDb.Favorite;
+import com.studio.suku.made.LocalDb.FavoriteHelper;
 import com.studio.suku.made.Model.MoviesResults;
+
+import java.util.ArrayList;
 
 public class DetailFilmActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -27,6 +30,8 @@ public class DetailFilmActivity extends AppCompatActivity implements View.OnClic
     private String Desc;
     private String Img;
     private Double Rate;
+    Favorite favorite = new Favorite();
+    private FavoriteHelper favoriteHelper;
     ImageView poster;
     SQLiteDatabase sqLiteDatabase;
 
@@ -36,8 +41,7 @@ public class DetailFilmActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_detail_film);
 
         MoviesResults.ResultsBean resultsBean = getIntent().getParcelableExtra(EXTRA_DATA);
-        Helper helper = new Helper(this);
-        sqLiteDatabase = helper.getWritableDatabase();
+        favoriteHelper = new FavoriteHelper(getApplicationContext());
 
         title = findViewById(R.id.judul);
         poster = findViewById(R.id.poster);
@@ -51,39 +55,25 @@ public class DetailFilmActivity extends AppCompatActivity implements View.OnClic
         name = resultsBean.getOriginal_title();
         Desc = resultsBean.getOverview();
         Img = resultsBean.getPoster_path();
-        Rate = resultsBean.getVote_average();
         title.setText(resultsBean.getOriginal_title());
         desc.setText(resultsBean.getOverview());
         rating.setText("Rate : " + rate);
         Picasso.get().load(resultsBean.getPoster_path()).into(poster);
+
+        favorite.setName(resultsBean.getOriginal_title());
+        favorite.setOverview(resultsBean.getOverview());
+        favorite.setImage(resultsBean.getPoster_path());
+        favorite.setType("Film");
+        favorite.setRate( resultsBean.getVote_average());
 
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.button){
-            Log.d("Hmmm", name);
-            ContentValues cv = new ContentValues();
-            cv.put(Contract.Entry.COLUMN_NAME, name);
-            cv.put(Contract.Entry.COLUMN_IMAGE, Img);
-            cv.put(Contract.Entry.COLUMN_OVERVIEW, Desc);
-            cv.put(Contract.Entry.COLUMN_RATE, Rate);
-            cv.put(Contract.Entry.COLUMN_TYPE, "Film");
-            try {
-                //Prevent The Duplicate Data
-                Cursor c = sqLiteDatabase.rawQuery("SELECT * FROM favorite WHERE name = ? ", new String[]{name});
-                if (c.moveToFirst()){
-                    Toast.makeText(this, "Sudah Di Tambahkan", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    sqLiteDatabase.insert(Contract.Entry.TABLE_NAME, null, cv);
-                    Toast.makeText(this, "Berhasil", Toast.LENGTH_SHORT).show();
-                }
-            }catch (Exception e){
-                Log.d("Ada Error : " , e.getMessage());
-                e.printStackTrace();
-                Toast.makeText(this, "Ada Error", Toast.LENGTH_SHORT).show();
-            }
+            //Toast.makeText(DetailFilmActivity.this, favorite.getName(), Toast.LENGTH_SHORT).show();
+            long result = favoriteHelper.insertFavorite(favorite);
+
         }
     }
 }

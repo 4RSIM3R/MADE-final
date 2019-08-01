@@ -4,12 +4,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.squareup.picasso.Picasso;
 import com.studio.suku.made.LocalDb.Contract;
-import com.studio.suku.made.LocalDb.Helper;
 import com.studio.suku.made.Model.MoviesResults;
 import com.studio.suku.made.R;
 
@@ -23,6 +23,7 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
     List<String> link;
     private final Context mContext;
     SQLiteDatabase sqLiteDatabase;
+    private Cursor list;
     Cursor cursor;
 
     public StackRemoteViewsFactory(Context mContext) {
@@ -43,15 +44,7 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
     }
 
     private void LoadFavoriteData(){
-        Helper helper = new Helper(mContext);
-        sqLiteDatabase = helper.getWritableDatabase();
-        String selectQuery = "SELECT  * FROM " + Contract.Entry.TABLE_NAME + " WHERE type = ? ";
-        cursor = sqLiteDatabase.rawQuery(selectQuery, new String[]{"Film"});
-        if (cursor != null && cursor.moveToFirst()){
-            for (int i = 0;  i < cursor.getColumnCount(); i++){
-                link.add(cursor.getString(cursor.getColumnIndex(Contract.Entry.COLUMN_IMAGE)));
-            }
-        }
+
     }
 
     @Override
@@ -66,15 +59,15 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public RemoteViews getViewAt(int position) {
-        RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.widget_item);
-        try {
-            Bitmap img = Picasso.get().load(link.get(position)).get();
-            rv.setImageViewBitmap(R.id.imageView, img);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return rv;
+//        RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.widget_item);
+//        try {
+//            Bitmap img = Picasso.get().load(link.get(position)).get();
+//            rv.setImageViewBitmap(R.id.imageView, img);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        return null;
     }
 
     @Override
