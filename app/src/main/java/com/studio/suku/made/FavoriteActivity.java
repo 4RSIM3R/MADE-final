@@ -20,6 +20,7 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavoriteC
     FavoriteHelper favoriteHelper;
     FavoriteAdapter adapter;
     RecyclerView list_favorite;
+    private static final String EXTRA_STATE = "EXTRA_STATE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,20 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavoriteC
         if (savedInstanceState == null) {
             new LoadFavoriteAsync(favoriteHelper, this).execute();
         }
+        else {
+            ArrayList<Favorite> list = savedInstanceState.getParcelableArrayList(EXTRA_STATE);
+            if (list != null) {
+                adapter.setListFavorite(list);
+            }
+        }
 
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList(EXTRA_STATE, adapter.getListFavorite());
     }
 
     @Override
