@@ -83,13 +83,40 @@ public class FavoriteHelper {
         return database.insert(Entry.TABLE_NAME, null, cv);
     }
 
-    public int deleteFavorite(int id){
-        return database.delete(Entry.TABLE_NAME, _ID + " = '" + id + "'", null);
+    public int deleteFavorite(String name){
+        return database.delete(Entry.TABLE_NAME, Entry.COLUMN_NAME + " = '" + name + "'", null);
     }
 
     public Cursor checkData(String name){
         return database.rawQuery("SELECT * FROM favorite WHERE name = ? ", new String[]{name});
     }
 
+    public Cursor queryProvider(){
+        return database.query(DATABASE_TABLE
+                , null
+                , null
+                , null
+                , null
+                , null
+                , _ID + " ASC");
+    }
+
+    public long insertProvider(ContentValues cv){
+        return database.insert(DATABASE_TABLE, null, cv);
+    }
+
+    public int deleteProvider(String id) {
+        return database.delete(DATABASE_TABLE, _ID + " = ?", new String[]{id});
+    }
+
+    public Cursor queryByIdProvider(String id) {
+        return database.query(DATABASE_TABLE, null
+                , _ID + " = ?"
+                , new String[]{id}
+                , null
+                , null
+                , null
+                , null);
+    }
 
 }

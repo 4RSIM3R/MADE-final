@@ -36,7 +36,7 @@ public class FilmFragment extends Fragment {
     private RecyclerView list_film;
     private FilmAdapter filmAdapter;
     private ProgressBar progressBar;
-    SearchBox searchBox;
+    private SearchBox searchBox;
     private final List<MoviesResults> beanList = new ArrayList<>();
     String title;
 

@@ -35,11 +35,11 @@ import java.util.List;
  */
 public class TvFragment extends Fragment {
 
-    View view;
-    RecyclerView list_tv;
-    ProgressBar progressBarTv;
-    TvAdapter tvAdapter;
-    SearchBox search_tv;
+    private View view;
+    private RecyclerView list_tv;
+    private ProgressBar progressBarTv;
+    private TvAdapter tvAdapter;
+    private SearchBox search_tv;
     private final List<TvResults> beanList = new ArrayList<>();
 
 

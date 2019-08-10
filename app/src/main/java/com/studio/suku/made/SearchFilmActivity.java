@@ -1,9 +1,7 @@
 package com.studio.suku.made;
 
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +12,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.studio.suku.made.Adapter.SearchFilmAdapter;
-import com.studio.suku.made.Model.SearchFilm;
 import com.studio.suku.made.Model.SearchFilmResults;
 import com.studio.suku.made.ViewModel.SearchFilmViewModel;
 
@@ -28,7 +25,6 @@ public class SearchFilmActivity extends AppCompatActivity {
     public static final String PARAMS = "Ilzam";
     ProgressBar progressBar;
     String params;
-    Context context;
     private final List<SearchFilmResults> searchFilmResults = new ArrayList<>();
 
     @Override

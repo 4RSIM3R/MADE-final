@@ -17,10 +17,10 @@ import com.studio.suku.made.R;
 public class FavoriteWidget extends AppWidgetProvider {
 
     private static final String TOAST_ACTION = "com.studio.suku.made.TOAST_ACTIION";
-    private static final String EXTRA_ITEM = "com.studio.suku.made.EXTRA_ITEM";
+    public static final String EXTRA_ITEM = "com.studio.suku.made.EXTRA_ITEM";
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+    private static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+                                        int appWidgetId) {
 
         Intent intent = new Intent(context, StackWidgetSevice.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);

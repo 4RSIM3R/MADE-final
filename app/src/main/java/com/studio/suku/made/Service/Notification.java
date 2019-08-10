@@ -22,8 +22,8 @@ public class Notification extends BroadcastReceiver {
 
     public static final String TYPE_7 = "NOTIF_7";
     public static final String TYPE_8 = "NOTIF_8";
-    public static final String EXTRA_TYPE = "type";
-    public static final String EXTRA_MESSAGE = "message";
+    private static final String EXTRA_TYPE = "type";
+    private static final String EXTRA_MESSAGE = "message";
 
 
     private final int ID_NOTIF_7 = 7;

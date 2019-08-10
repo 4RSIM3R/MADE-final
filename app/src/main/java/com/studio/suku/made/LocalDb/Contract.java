@@ -6,7 +6,7 @@ import android.provider.BaseColumns;
 
 public class Contract {
 
-    public static final String Authority = "com.studio.suku.made";
+    public static final String AUTHORITY = "com.studio.suku.made";
     private static final String SCHEME = "content";
 
     public Contract() {
@@ -22,7 +22,7 @@ public class Contract {
         public static final String COLUMN_TYPE = "type";
 
         public static final Uri CONTENT_URI = new Uri.Builder().scheme(SCHEME)
-                .authority(Authority)
+                .authority(AUTHORITY)
                 .appendPath(TABLE_NAME)
                 .build();
     }

@@ -37,122 +37,122 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReleaseReminder extends BroadcastReceiver {
 
-    public List<ReleaseResults.ResultsBean> releaseResultsList = new ArrayList<>(), tmpMovies;
-    String baseUrl = "https://api.themoviedb.org";
-    String api_key = "24f2356bed948a69b6ce4946afbf4f67";
-    private final int REQUEST_CODE_RELEASE = 12;
-    public static String CHANNEL_ID = "ch_1";
-    public static CharSequence CHANNEL_NAME = "release_today";
-    public ReleaseReminder() {
+  public List<ReleaseResults.ResultsBean> releaseResultsList = new ArrayList<>(), tmpMovies;
+  String baseUrl = "https://api.themoviedb.org";
+  String api_key = "24f2356bed948a69b6ce4946afbf4f67";
+  private final int REQUEST_CODE_RELEASE = 12;
+  public static String CHANNEL_ID = "ch_1";
+  public static CharSequence CHANNEL_NAME = "release_today";
+  public ReleaseReminder() {
 
-    }
+  }
 
-    @Override
-    public void onReceive(final Context context, Intent intent) {
+  @Override
+  public void onReceive(final Context context, Intent intent) {
 
-        Date cal = Calendar.getInstance().getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        final String dateToday = dateFormat.format(cal);
+    Date cal = Calendar.getInstance().getTime();
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    final String dateToday = dateFormat.format(cal);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
 
-        RequestRelease release = retrofit.create(RequestRelease.class);
-        Call<ReleaseResults> call = release.getUpcomingFilm(api_key);
+    RequestRelease release = retrofit.create(RequestRelease.class);
+    Call<ReleaseResults> call = release.getUpcomingFilm(api_key);
 
-        call.enqueue(new Callback<ReleaseResults>() {
-            @Override
-            public void onResponse(Call<ReleaseResults> call, Response<ReleaseResults> response) {
-                Log.d("Bisa", response.toString());
-                if (response.body() != null){
-                    showAlarmNotification(context, "Hey !!!", "There Is Something New", 8);
-                    releaseResultsList.add(response.body().getResults().get(0));
-                    for (ReleaseResults.ResultsBean r : releaseResultsList){
-                        String date = r.getRelease_date();
-                        if (date.equalsIgnoreCase(dateToday)){
-                            showAlarmNotification(context, "Release Today", r.getTitle(), 8);
-                        }
-                    }
-                }
+    call.enqueue(new Callback<ReleaseResults>() {
+      @Override
+      public void onResponse(Call<ReleaseResults> call, Response<ReleaseResults> response) {
+        Log.d("Bisa", response.toString());
+        if (response.body() != null){
+          showAlarmNotification(context, "Hey !!!", "There Is Something New", 8);
+          releaseResultsList.add(response.body().getResults().get(0));
+          for (ReleaseResults.ResultsBean r : releaseResultsList){
+            String date = r.getRelease_date();
+            if (date.equalsIgnoreCase(dateToday)){
+              showAlarmNotification(context, "Release Today", r.getTitle(), 8);
             }
-
-            @Override
-            public void onFailure(Call<ReleaseResults> call, Throwable t) {
-                t.printStackTrace();
-                Log.e("Ada Error", t.getMessage());
-            }
-        });
-
-    }
-
-    private void showAlarmNotification(Context context, String title, String message, int notifId) {
-        String CHANNEL_ID = "Channel_2";
-        String CHANNEL_NAME = "Release channel";
-        NotificationCompat.Builder builder;
-
-        NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-             builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                    .setSmallIcon(R.drawable.ic_video_library_black_24dp)
-                    .setContentTitle(title)
-                    .setContentText(message)
-                    .setColor(ContextCompat.getColor(context, android.R.color.transparent))
-                    .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
-                    .setSound(alarmSound);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
-                    CHANNEL_NAME,
-                    NotificationManager.IMPORTANCE_DEFAULT);
-
-            channel.enableVibration(true);
-            channel.setVibrationPattern(new long[]{1000, 1000, 1000, 1000, 1000});
-
-            builder.setChannelId(CHANNEL_ID);
-
-            if (notificationManagerCompat != null) {
-                notificationManagerCompat.createNotificationChannel(channel);
-            }
+          }
         }
+      }
 
-        android.app.Notification notification = builder.build();
+      @Override
+      public void onFailure(Call<ReleaseResults> call, Throwable t) {
+        t.printStackTrace();
+        Log.e("Ada Error", t.getMessage());
+      }
+    });
 
-        if (notificationManagerCompat != null) {
-            notificationManagerCompat.notify(notifId, notification);
-        }
+  }
 
+  private void showAlarmNotification(Context context, String title, String message, int notifId) {
+    String CHANNEL_ID = "Channel_2";
+    String CHANNEL_NAME = "Release channel";
+    NotificationCompat.Builder builder;
+
+    NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+    builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_video_library_black_24dp)
+            .setContentTitle(title)
+            .setContentText(message)
+            .setColor(ContextCompat.getColor(context, android.R.color.transparent))
+            .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
+            .setSound(alarmSound);
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+      NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
+              CHANNEL_NAME,
+              NotificationManager.IMPORTANCE_DEFAULT);
+
+      channel.enableVibration(true);
+      channel.setVibrationPattern(new long[]{1000, 1000, 1000, 1000, 1000});
+
+      builder.setChannelId(CHANNEL_ID);
+
+      if (notificationManagerCompat != null) {
+        notificationManagerCompat.createNotificationChannel(channel);
+      }
     }
 
-    public void StartReminder(Context context){
+    android.app.Notification notification = builder.build();
 
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, ReleaseReminder.class);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 18);
-        calendar.set(Calendar.MINUTE, 30);
-        calendar.set(Calendar.SECOND, 0);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, REQUEST_CODE_RELEASE, intent, 0);
-        if (alarmManager != null) {
-            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-        }
-        Toast.makeText(context, "Alhamdulillah", Toast.LENGTH_SHORT).show();
+    if (notificationManagerCompat != null) {
+      notificationManagerCompat.notify(notifId, notification);
     }
 
-    public void stopReminder(Context context){
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, ReleaseReminder.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, REQUEST_CODE_RELEASE, intent, 0);
-        if (alarmManager != null) {
-            alarmManager.cancel(pendingIntent);
-        }
-    }
+  }
 
-    private void showToast(Context context, String title, String message){
-        Toast.makeText(context, title, Toast.LENGTH_LONG).show();
+  public void StartReminder(Context context){
+
+    AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+    Intent intent = new Intent(context, ReleaseReminder.class);
+
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(Calendar.HOUR_OF_DAY, 18);
+    calendar.set(Calendar.MINUTE, 30);
+    calendar.set(Calendar.SECOND, 0);
+
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, REQUEST_CODE_RELEASE, intent, 0);
+    if (alarmManager != null) {
+      alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
+    Toast.makeText(context, "Alhamdulillah", Toast.LENGTH_SHORT).show();
+  }
+
+  public void stopReminder(Context context){
+    AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+    Intent intent = new Intent(context, ReleaseReminder.class);
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, REQUEST_CODE_RELEASE, intent, 0);
+    if (alarmManager != null) {
+      alarmManager.cancel(pendingIntent);
+    }
+  }
+
+  private void showToast(Context context, String title, String message){
+    Toast.makeText(context, title, Toast.LENGTH_LONG).show();
+  }
 }

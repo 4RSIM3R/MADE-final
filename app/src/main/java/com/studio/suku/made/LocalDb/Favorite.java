@@ -70,7 +70,7 @@ public class Favorite implements Parcelable {
     public Favorite() {
     }
 
-    protected Favorite(Parcel in) {
+    private Favorite(Parcel in) {
         this.name = in.readString();
         this.image = in.readString();
         this.rate = (Double) in.readValue(Double.class.getClassLoader());

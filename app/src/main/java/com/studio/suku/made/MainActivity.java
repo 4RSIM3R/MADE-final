@@ -13,19 +13,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.quinny898.library.persistentsearch.SearchBox;
 import com.studio.suku.made.Adapter.ViewPagerAdapter;
 import com.studio.suku.made.View.FilmFragment;
 import com.studio.suku.made.View.TvFragment;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity{
 
-    private static SearchBox searchBox;
-    private static String url_destination;
-    private int currentPage;
-    PageListener pageListener;
-    FloatingActionButton floatingActionButton;
-    ActionBar actionBar;
+
+    private FloatingActionButton floatingActionButton;
+    private ActionBar actionBar;
 
 
     @Override
@@ -54,21 +50,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter.AddFragment(new TvFragment(), "Tv");
         //Kita Set ke view pager nya
         viewPager.setAdapter(adapter);
-        pageListener = new PageListener();
-        viewPager.setOnPageChangeListener(pageListener);
         tabLayout.setupWithViewPager(viewPager);
 
-        Log.d("MainActicity", "Halaman : " + viewPager.getCurrentItem());
-
-
-        url_destination = "https://api.themoviedb.org/3/search/movie";
 
 
 
-    }
-
-    @Override
-    public void onClick(View v) {
 
     }
 
@@ -88,33 +74,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if (item.getItemId() == R.id.fav_film){
             Intent pindah = new Intent(MainActivity.this, FavoriteActivity.class);
-            pindah.putExtra(FavoriteActivity.Type, "Film");
+            pindah.putExtra(FavoriteActivity.EXTRA_STATE, "Film");
             startActivity(pindah);
         }
         else if (item.getItemId() == R.id.fav_tv){
             Intent pindah = new Intent(MainActivity.this, FavoriteActivity.class);
-            pindah.putExtra(FavoriteActivity.Type, "Tv");
+            pindah.putExtra(FavoriteActivity.EXTRA_STATE, "Tv");
             startActivity(pindah);
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private static class PageListener extends ViewPager.SimpleOnPageChangeListener {
-        private int currentPage = 0;
-        public void onPageSelected(int position) {
-            Log.i("MainActivity", "page selected " + position);
-            if (position == 0){
-                url_destination = "https://api.themoviedb.org/3/search/movie";
 
-            }
-            else {
-
-            }
-
-            currentPage = position;
-        }
-    }
 
 
 }

@@ -80,7 +80,7 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmHolder>{
 
         }
 
-        public void bind(final MoviesResults.ResultsBean item, final OnItemClickListener listener) {
+        void bind(final MoviesResults.ResultsBean item, final OnItemClickListener listener) {
             String path_img = "https://image.tmdb.org/t/p/w500/"+ item.getPoster_path();
             Picasso.get().load(path_img).into(imageView);
          itemView.setOnClickListener(new View.OnClickListener() {

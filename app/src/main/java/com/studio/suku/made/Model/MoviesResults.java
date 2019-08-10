@@ -260,7 +260,7 @@ public class MoviesResults {
         public ResultsBean() {
         }
 
-        public ResultsBean(Parcel in) {
+        ResultsBean(Parcel in) {
             this.vote_count = in.readInt();
             this.id = in.readInt();
             this.video = in.readByte() != 0;
