@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.studio.suku.made.Model.SearchFilm;
 import com.studio.suku.made.Model.SearchFilmResults;
 import com.studio.suku.made.R;
 
@@ -56,9 +55,9 @@ public class SearchFilmAdapter extends RecyclerView.Adapter<SearchFilmAdapter.Fi
 
     public class FilmViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageView;
-        TextView title;
-        TextView rate;
+        final ImageView imageView;
+        final TextView title;
+        final TextView rate;
 
         public FilmViewHolder(@NonNull View itemView) {
             super(itemView);

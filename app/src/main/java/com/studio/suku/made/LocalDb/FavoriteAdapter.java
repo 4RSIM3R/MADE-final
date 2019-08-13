@@ -9,21 +9,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.studio.suku.made.R;
 
 import java.util.ArrayList;
 
+import static com.studio.suku.made.LocalDb.Contract.Entry.CONTENT_URI;
+
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder> {
 
-    private ArrayList<Favorite> listFavorite = new ArrayList<>();
-    private FavoriteHelper favoriteHelper;
-    private Activity activity;
-    private Context context;
+    private final ArrayList<Favorite> listFavorite = new ArrayList<>();
+    private final FavoriteHelper favoriteHelper;
+    private final Context context;
 
     public FavoriteAdapter(Activity activity, Context context) {
-        this.activity = activity;
+        Activity activity1 = activity;
         this.context = context;
         favoriteHelper = new FavoriteHelper(context);
         favoriteHelper.open();
@@ -66,14 +69,18 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     @Override
     public void onBindViewHolder(@NonNull FavoriteAdapter.FavoriteHolder favoriteHolder, int i) {
             final int position = favoriteHolder.getAdapterPosition();
+        Picasso.get().load(listFavorite.get(i).getImage()).into(favoriteHolder.imageView);
             favoriteHolder.textView.setText(listFavorite.get(i).getName());
             final String title = listFavorite.get(i).getName();
             favoriteHolder.itemView.setTag(title);
+        final String selectionClause = Contract.Entry.COLUMN_NAME + " = ?";
             favoriteHolder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d("Id nya", "ID : " + position);
                     favoriteHelper.deleteFavorite(title);
+
+                    context.getContentResolver().delete(CONTENT_URI, selectionClause, new String[]{listFavorite.get(position).getName()});
                     removeItem(position);
                 }
             });
@@ -87,12 +94,14 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
     public class FavoriteHolder extends RecyclerView.ViewHolder {
 
-        TextView textView;
-        Button button;
+        final TextView textView;
+        final Button button;
+        final ImageView imageView;
 
         FavoriteHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.title_favorite);
+            imageView = itemView.findViewById(R.id.poster_favorite);
             button = itemView.findViewById(R.id.delete_favorite);
         }
     }

@@ -47,9 +47,9 @@ public class SearchTvAdapter extends RecyclerView.Adapter<SearchTvAdapter.TvHold
 
     public class TvHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageView;
-        TextView title;
-        TextView rate;
+        final ImageView imageView;
+        final TextView title;
+        final TextView rate;
 
         public TvHolder(@NonNull View itemView) {
             super(itemView);

@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static String DATABASE_NAME = "dbfavorite";
+    private static final String DATABASE_NAME = "dbfavorite";
     private static final int DATABASE_VERSION = 1;
 
     private static final String SQL_CREATE_TABLE_FAVORITE = String.format("CREATE TABLE %s"

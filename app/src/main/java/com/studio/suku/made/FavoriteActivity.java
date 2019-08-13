@@ -1,6 +1,5 @@
 package com.studio.suku.made;
 
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,9 +9,7 @@ import android.util.Log;
 import com.studio.suku.made.LocalDb.Favorite;
 import com.studio.suku.made.LocalDb.FavoriteAdapter;
 import com.studio.suku.made.LocalDb.FavoriteHelper;
-import com.studio.suku.made.LocalDb.LoadFavoriteCallback;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 public class FavoriteActivity extends AppCompatActivity {
@@ -20,7 +17,7 @@ public class FavoriteActivity extends AppCompatActivity {
     public static String Type;
     FavoriteHelper favoriteHelper;
     FavoriteAdapter adapter;
-    ArrayList<Favorite> list = new ArrayList<>();
+    final ArrayList<Favorite> list = new ArrayList<>();
     RecyclerView list_favorite;
     public static final String EXTRA_STATE = "EXTRA_STATE";
 
@@ -35,9 +32,11 @@ public class FavoriteActivity extends AppCompatActivity {
         list_favorite.setHasFixedSize(true);
         adapter = new FavoriteAdapter(this, getApplicationContext());
         list_favorite.setAdapter(adapter);
-        list.addAll(favoriteHelper.getFavorite("Film"));
-        Log.d("Datanya", list.get(0).getName());
-        Log.d("Datanya", getIntent().getStringExtra(EXTRA_STATE));
+        if (favoriteHelper.getFavorite(getIntent().getStringExtra(EXTRA_STATE)).size() < 0){
+
+        }else{
+            list.addAll(favoriteHelper.getFavorite(getIntent().getStringExtra(EXTRA_STATE)));
+        }
         try {
             adapter.setListFavorite(list);
         }catch (Exception e){

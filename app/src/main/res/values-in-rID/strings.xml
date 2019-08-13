@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">MADE</string>
+    <string name="change_language_settings">Atur Bahasa</string>
+    <string name="favorite_film">Film Favorit</string>
+    <string name="favorite_tv">Acara Tv Favorit</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lorem">detail</string>
+    <string name="Tv">Acara Tv</string>
+    <string name="Film">Film</string>
+    <string name="appwidget_text">Budal Amerika</string>
+    <string name="add_widget">Add widget</string>
+    <string name="empty_text">Empty</string>
+    <string name="avanger_infity_wars">Avanger Infity Wars</string>
+    <string name="hollywood">Hollywood</string>
+    <string name="add_to_favorite">Tambahkan Ke Favorit</string>
+    <string name="budal_amerika">Budal Amerika</string>
+    <string name="daily_notification">Notifikasi Harian</string>
+    <string name="daily_reminder">Notifikasi Relase Film</string>
+    <string name="poster_film">Poster Film</string>
+    <string name="poster_tv">Poster Tv</string>
+</resources>

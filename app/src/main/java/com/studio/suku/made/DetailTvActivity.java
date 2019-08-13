@@ -18,13 +18,8 @@ public class DetailTvActivity extends AppCompatActivity implements View.OnClickL
 
     public static final String EXTRA_DATA = "extra_data";
 
-    private ImageView poster;
-    private TextView title;
-    private TextView desc;
-    private TextView vote;
-    private Favorite favorite = new Favorite();
+    private final Favorite favorite = new Favorite();
     private FavoriteHelper favoriteHelper;
-    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +29,11 @@ public class DetailTvActivity extends AppCompatActivity implements View.OnClickL
         TvResults.ResultsBean resultsBean = getIntent().getParcelableExtra(EXTRA_DATA);
         favoriteHelper = new FavoriteHelper(getApplicationContext());
 
-        poster = findViewById(R.id.poster_tv);
-        title  = findViewById(R.id.judul_tv);
-        desc = findViewById(R.id.desc_tv);
-        vote = findViewById(R.id.production_tv);
-        button = findViewById(R.id.button_tv);
+        ImageView poster = findViewById(R.id.poster_tv);
+        TextView title = findViewById(R.id.judul_tv);
+        TextView desc = findViewById(R.id.desc_tv);
+        TextView vote = findViewById(R.id.production_tv);
+        Button button = findViewById(R.id.button_tv);
         button.setOnClickListener(this);
 
         Picasso.get().load(resultsBean.getPoster_path()).into(poster);

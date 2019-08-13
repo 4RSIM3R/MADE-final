@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +17,6 @@ import com.studio.suku.made.R;
 
 import java.util.List;
 
-import static com.studio.suku.made.DetailFilmActivity.*;
-
 public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmHolder>{
 
     public interface OnItemClickListener {
@@ -28,7 +25,7 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmHolder>{
 
     private final Context context;
     private final List<MoviesResults.ResultsBean> list;
-    private OnItemClickListener listener;
+    private final OnItemClickListener listener;
 
 
     public FilmAdapter(Context context, List<MoviesResults.ResultsBean> list, OnItemClickListener listener) {

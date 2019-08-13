@@ -29,10 +29,10 @@
 
             <ImageView
                 android:scaleType="fitXY"
-                android:id="@+id/poster_search_film"
+                android:id="@+id/poster_favorite"
                 android:background="@color/black"
                 android:layout_width="110dp"
-                android:layout_height="150dp" />
+                android:layout_height="match_parent" />
 
             <LinearLayout
                 android:layout_margin="@dimen/main_padding"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/title_search_film"
+                    android:id="@+id/title_favorite"
                     android:layout_marginBottom="@dimen/third_margin"
                     android:textSize="20sp"
                     android:text="@string/app_name"
@@ -49,9 +49,16 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/rate_search_film"
+                    android:id="@+id/rate_favorite"
                     android:textSize="16sp"
                     android:text="@string/app_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:text="Delete"
+                    android:layout_marginTop="@dimen/main_padding"
+                    android:id="@+id/delete_favorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 

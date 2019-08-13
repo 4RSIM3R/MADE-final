@@ -94,8 +94,8 @@ public class FavoriteHelper {
     public Cursor queryProvider(){
         return database.query(DATABASE_TABLE
                 , null
-                , null
-                , null
+                , Entry.COLUMN_TYPE + " = ?"
+                , new String[]{"Film"}
                 , null
                 , null
                 , _ID + " ASC");

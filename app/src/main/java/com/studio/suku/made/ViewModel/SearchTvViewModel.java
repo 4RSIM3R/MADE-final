@@ -5,8 +5,6 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
-import com.studio.suku.made.Model.SearchFilm;
-import com.studio.suku.made.Model.SearchFilmResults;
 import com.studio.suku.made.Model.SearchTv;
 import com.studio.suku.made.Model.SearchTvResults;
 

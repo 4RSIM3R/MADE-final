@@ -18,13 +18,10 @@ import android.widget.ProgressBar;
 
 import com.quinny898.library.persistentsearch.SearchBox;
 import com.quinny898.library.persistentsearch.SearchResult;
-import com.studio.suku.made.Adapter.FilmAdapter;
 import com.studio.suku.made.Adapter.TvAdapter;
 import com.studio.suku.made.Model.TvResults;
 import com.studio.suku.made.R;
-import com.studio.suku.made.SearchFilmActivity;
 import com.studio.suku.made.SearchTvActivity;
-import com.studio.suku.made.ViewModel.FilmViewModel;
 import com.studio.suku.made.ViewModel.TvViewModel;
 
 import java.util.ArrayList;
@@ -35,11 +32,9 @@ import java.util.List;
  */
 public class TvFragment extends Fragment {
 
-    private View view;
     private RecyclerView list_tv;
     private ProgressBar progressBarTv;
     private TvAdapter tvAdapter;
-    private SearchBox search_tv;
     private final List<TvResults> beanList = new ArrayList<>();
 
 
@@ -73,7 +68,7 @@ public class TvFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_tv, container, false);
+        View view = inflater.inflate(R.layout.fragment_tv, container, false);
         return view;
     }
 
@@ -81,7 +76,7 @@ public class TvFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         list_tv = view.findViewById(R.id.list_tv);
-        search_tv = view.findViewById(R.id.search_tv);
+        SearchBox search_tv = view.findViewById(R.id.search_tv);
         progressBarTv = view.findViewById(R.id.progressBarTv);
         list_tv.setHasFixedSize(true);
         list_tv.setLayoutManager(new GridLayoutManager(getActivity(), 2));

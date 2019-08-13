@@ -34,11 +34,8 @@ import java.util.List;
 public class FilmFragment extends Fragment {
 
     private RecyclerView list_film;
-    private FilmAdapter filmAdapter;
     private ProgressBar progressBar;
-    private SearchBox searchBox;
     private final List<MoviesResults> beanList = new ArrayList<>();
-    String title;
 
 
 
@@ -85,7 +82,7 @@ public class FilmFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         list_film = view.findViewById(R.id.list_film);
-        searchBox = view.findViewById(R.id.search_film);
+        SearchBox searchBox = view.findViewById(R.id.search_film);
         progressBar = view.findViewById(R.id.progressBar);
         list_film.setHasFixedSize(true);
         list_film.setLayoutManager(new GridLayoutManager(getActivity(), 2));

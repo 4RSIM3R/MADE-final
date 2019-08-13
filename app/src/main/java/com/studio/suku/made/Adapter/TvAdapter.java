@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.studio.suku.made.DetailTvActivity;
@@ -19,8 +18,8 @@ import java.util.List;
 
 public class TvAdapter extends RecyclerView.Adapter<TvAdapter.TvViewHolder> {
 
-    Context context;
-    List<TvResults.ResultsBean> list;
+    final Context context;
+    final List<TvResults.ResultsBean> list;
 
     public TvAdapter(Context context, List<TvResults.ResultsBean> list) {
         this.context = context;
@@ -62,7 +61,7 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.TvViewHolder> {
 
     public class TvViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageView;
+        final ImageView imageView;
 
         public TvViewHolder(@NonNull View itemView) {
             super(itemView);

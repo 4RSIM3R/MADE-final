@@ -16,7 +16,7 @@
 
         <TextView
             android:layout_weight="1"
-            android:text="Daily Reminder"
+            android:text="@string/daily_reminder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -35,7 +35,7 @@
 
         <TextView
             android:layout_weight="1"
-            android:text="Daily Notification"
+            android:text="@string/daily_notification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

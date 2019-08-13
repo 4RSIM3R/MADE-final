@@ -5,8 +5,6 @@ import android.arch.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-import com.studio.suku.made.Model.MoviesResults;
-import com.studio.suku.made.Model.RequestFilm;
 import com.studio.suku.made.Model.RequestTv;
 import com.studio.suku.made.Model.TvResults;
 

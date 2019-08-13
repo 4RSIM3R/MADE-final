@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,16 +19,12 @@ import com.studio.suku.made.View.TvFragment;
 public class MainActivity extends AppCompatActivity{
 
 
-    private FloatingActionButton floatingActionButton;
-    private ActionBar actionBar;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        floatingActionButton = findViewById(R.id.fab);
+        FloatingActionButton floatingActionButton = findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +33,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        actionBar = getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setElevation(0.5f);
 
 
@@ -46,18 +41,15 @@ public class MainActivity extends AppCompatActivity{
         ViewPager viewPager = findViewById(R.id.page);
         //Buat Adapeter Untuk ViewPager nya
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.AddFragment(new FilmFragment(), "Film");
-        adapter.AddFragment(new TvFragment(), "Tv");
+        adapter.AddFragment(new FilmFragment(), getString(R.string.Film));
+        adapter.AddFragment(new TvFragment(), getString(R.string.Tv));
         //Kita Set ke view pager nya
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
 
 
-
-
     }
-
 
 
     @Override

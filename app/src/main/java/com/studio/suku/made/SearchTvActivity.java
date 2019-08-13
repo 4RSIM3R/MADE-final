@@ -22,7 +22,7 @@ public class SearchTvActivity extends AppCompatActivity {
     String params;
     SearchTvAdapter adapter;
     RecyclerView list_search_tv;
-    List<SearchTvResults> searchTvResults = new ArrayList<>();
+    final List<SearchTvResults> searchTvResults = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -4,7 +4,6 @@ import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -16,8 +15,6 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.studio.suku.made.MainActivity;
-import com.studio.suku.made.Model.Release;
 import com.studio.suku.made.Model.ReleaseResults;
 import com.studio.suku.made.Model.RequestRelease;
 import com.studio.suku.made.R;
@@ -27,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,12 +33,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReleaseReminder extends BroadcastReceiver {
 
-  public List<ReleaseResults.ResultsBean> releaseResultsList = new ArrayList<>(), tmpMovies;
-  String baseUrl = "https://api.themoviedb.org";
-  String api_key = "24f2356bed948a69b6ce4946afbf4f67";
+  public final List<ReleaseResults.ResultsBean> releaseResultsList = new ArrayList<>();
+  final String baseUrl = "https://api.themoviedb.org";
+  final String api_key = "24f2356bed948a69b6ce4946afbf4f67";
   private final int REQUEST_CODE_RELEASE = 12;
-  public static String CHANNEL_ID = "ch_1";
-  public static CharSequence CHANNEL_NAME = "release_today";
   public ReleaseReminder() {
 
   }
@@ -60,20 +54,18 @@ public class ReleaseReminder extends BroadcastReceiver {
             .build();
 
     RequestRelease release = retrofit.create(RequestRelease.class);
-    Call<ReleaseResults> call = release.getUpcomingFilm(api_key);
+    Call<ReleaseResults> call = release.getUpcomingFilm(api_key, dateToday, dateToday);
 
     call.enqueue(new Callback<ReleaseResults>() {
       @Override
       public void onResponse(Call<ReleaseResults> call, Response<ReleaseResults> response) {
         Log.d("Bisa", response.toString());
         if (response.body() != null){
-          showAlarmNotification(context, "Hey !!!", "There Is Something New", 8);
+          //showAlarmNotification(context, "Hey !!!", "There Is Something New", 8);
           releaseResultsList.add(response.body().getResults().get(0));
           for (ReleaseResults.ResultsBean r : releaseResultsList){
             String date = r.getRelease_date();
-            if (date.equalsIgnoreCase(dateToday)){
-              showAlarmNotification(context, "Release Today", r.getTitle(), 8);
-            }
+            showAlarmNotification(context, "Release Today", r.getTitle(), 8);
           }
         }
       }
@@ -132,8 +124,8 @@ public class ReleaseReminder extends BroadcastReceiver {
     Intent intent = new Intent(context, ReleaseReminder.class);
 
     Calendar calendar = Calendar.getInstance();
-    calendar.set(Calendar.HOUR_OF_DAY, 18);
-    calendar.set(Calendar.MINUTE, 30);
+    calendar.set(Calendar.HOUR_OF_DAY, 8);
+    calendar.set(Calendar.MINUTE, 0);
     calendar.set(Calendar.SECOND, 0);
 
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, REQUEST_CODE_RELEASE, intent, 0);

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MADE</string>
+    <string name="app_name" translatable="false">MADE</string>
     <string name="change_language_settings">Change Language Settings</string>
     <string name="favorite_film">Favorite Film</string>
     <string name="favorite_tv">Favorite Tv Show</string>
@@ -7,7 +7,17 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="lorem">detail</string>
-    <string name="appwidget_text">EXAMPLE</string>
+    <string name="Tv">Tv Show</string>
+    <string name="Film">Film</string>
+    <string name="appwidget_text">Goes To America</string>
     <string name="add_widget">Add widget</string>
     <string name="empty_text">Empty</string>
+    <string name="avanger_infity_wars">Avanger Infity Wars</string>
+    <string name="hollywood">Hollywood</string>
+    <string name="add_to_favorite">Add To Favorite</string>
+    <string name="budal_amerika">Goes To Amerika</string>
+    <string name="daily_notification">Daily Notification</string>
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="poster_film">Poster Film</string>
+    <string name="poster_tv">Poster Tv</string>
 </resources>
